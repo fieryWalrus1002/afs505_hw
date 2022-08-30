@@ -1,0 +1,88 @@
+---
+title: "Homework 1"
+author: "Magnus Wood"
+output: html_notebook
+---
+==
+
+```{r}
+plot(cars)
+```
+
+Question 1
+
+(a)	Engine 1
+Create the vector below.
+##      Displacement (cc)     Net Power Out (kW)        Net Torque (Nm) 
+##                 163.00                   3.60                  10.30 
+##       Oil Capacity (l) Fuel Tank Capacity (l) 
+##                   0.58                   3.10
+Examine the attributes, dimension(s) and data type for this vector. Comment.
+
+```{r "Q1s"}
+# create a vector using key value pairs
+my_vector <- c("Displacement (cc)" = 163, "New Power Out (kw)" = 3.60, "Net Torque (Nm)" = 10.30, "Oil Capacity (l)" = 0.58, "Fuel Tank Capacity (l)" = 3.10)
+
+print(my_vector)
+
+
+# Investigate the vector
+vec_cls = class(my_vector)
+vec_len = length(my_vector)
+vec_attr = attributes(my_vector)
+
+# print a formatted string with the information
+writeLines(sprintf("class: % s,\nLength: % s,\nAttributes: % s", vec_cls, vec_len, vec_attr))
+```
+
+```{r "Q1b"}
+
+     efficient_vector <- c("Displacement (cc)" = 163, "Net Power Out (kW)"=3.6, "Net Torque (Nm)"=10.3, "Oil Capacity (l)"=0.58, "Fuel Tank Capacity (l)"=3.1)
+
+print(efficient_vector)
+
+# Investigate the vector
+vec_cls = class(my_vector)
+vec_len = length(my_vector)
+vec_attr = attributes(my_vector)
+
+# print a formatted string with the information
+writeLines(sprintf("class: % s,\nLength: % s,\nAttributes: % s", vec_cls, vec_len, vec_attr))
+
+```
+
+
+
+Question 2 – Family
+Create a vector with names of your family members, making clear which name is for your father, wife, husband, son, cat, etc…
+
+Question 3 - Matrices
+(a)	Create the matrix below.
+##        AA   BB   CC   DD   EE
+## [1,] -3.3 -1.0  1.3  3.6  5.9
+## [2,]  8.2 10.5 12.8 15.1 17.4
+## [3,] 19.7 22.0 24.3 26.6 28.9
+Use str to examine the properties of this matrix and comment.
+(b)arithmetic with matrix
+Add 3.3 to the matrix above, and divide by 2.3. Show your results and comment.
+ (c)Create the matrix below.
+Use prior results to complete this task as efficiently as possible.
+##      [,1] [,2] [,3]
+## [1,] -3.3 22.0 15.1
+## [2,]  8.2  1.3 26.6
+## [3,] 19.7 12.8  5.9
+## [4,] -1.0 24.3 17.4
+## [5,] 10.5  3.6 28.9
+Use str to examine the properties of this matrix and comment.
+ (d) Create the matrix below.
+Use prior results to complete this task as efficiently as possible.
+##      [,1] [,2] [,3]
+## [1,]   -3   21   15
+## [2,]    8    1   26
+## [3,]   19   12    5
+## [4,]   -1   24   17
+## [5,]   10    3   28
+Use str to examine the properties of this matrix and comment.
+
+
+
