@@ -1771,33 +1771,23 @@ pre code {
 
 <!-- rnb-text-begin -->
 <p>==</p>
+<div id="question-1-a-engine-1" class="section level3">
+<h3>Question 1 (a) Engine 1</h3>
+<p>Examine the attributes, dimension(s) and data type for this vector.
+Comment.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucGxvdChjYXJzKVxuYGBgIn0= -->
-<pre class="r"><code>plot(cars)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>Question 1</p>
-<ol style="list-style-type: lower-alpha">
-<li>Engine 1 Create the vector below. ## Displacement (cc) Net Power Out
-(kW) Net Torque (Nm) ## 163.00 3.60 10.30 ## Oil Capacity (l) Fuel Tank
-Capacity (l) ## 0.58 3.10 Examine the attributes, dimension(s) and data
-type for this vector. Comment.</li>
-</ol>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBjcmVhdGUgYSB2ZWN0b3IgdXNpbmcga2V5IHZhbHVlIHBhaXJzXG5teV92ZWN0b3IgPC0gYyhcIkRpc3BsYWNlbWVudCAoY2MpXCIgPSAxNjMsIFwiTmV3IFBvd2VyIE91dCAoa3cpXCIgPSAzLjYwLCBcIk5ldCBUb3JxdWUgKE5tKVwiID0gMTAuMzAsIFwiT2lsIENhcGFjaXR5IChsKVwiID0gMC41OCwgXCJGdWVsIFRhbmsgQ2FwYWNpdHkgKGwpXCIgPSAzLjEwKVxuXG5wcmludChteV92ZWN0b3IpXG5cblxuIyBJbnZlc3RpZ2F0ZSB0aGUgdmVjdG9yXG52ZWNfY2xzID0gY2xhc3MobXlfdmVjdG9yKVxudmVjX2xlbiA9IGxlbmd0aChteV92ZWN0b3IpXG52ZWNfYXR0ciA9IGF0dHJpYnV0ZXMobXlfdmVjdG9yKVxuXG4jIHByaW50IGEgZm9ybWF0dGVkIHN0cmluZyB3aXRoIHRoZSBpbmZvcm1hdGlvblxud3JpdGVMaW5lcyhzcHJpbnRmKFwiY2xhc3M6ICUgcyxcXG5MZW5ndGg6ICUgcyxcXG5BdHRyaWJ1dGVzOiAlIHNcIiwgdmVjX2NscywgdmVjX2xlbiwgdmVjX2F0dHIpKVxuYGBgIn0= -->
-<pre class="r"><code># create a vector using key value pairs
-my_vector &lt;- c(&quot;Displacement (cc)&quot; = 163, &quot;New Power Out (kw)&quot; = 3.60, &quot;Net Torque (Nm)&quot; = 10.30, &quot;Oil Capacity (l)&quot; = 0.58, &quot;Fuel Tank Capacity (l)&quot; = 3.10)
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY2FyX3ZlY3QgPC0gIGMoXCJEaXNwbGFjZW1lbnQgKGNjKVwiID0gMTYzLCBcIk5ldyBQb3dlciBPdXQgKGt3KVwiID0gMy42MCwgXCJOZXQgVG9ycXVlIChObSlcIiA9IDEwLjMwLCBcIk9pbCBDYXBhY2l0eSAobClcIiA9IDAuNTgsIFwiRnVlbCBUYW5rIENhcGFjaXR5IChsKVwiID0gMy4xMClcblxubmFtZXMoY2FyX3ZlY3QpIDwtIGMoXCJEaXNwbGFjZW1lbnQgKGNjKVwiLCBcIk5ldyBQb3dlciBPdXQgKGt3KVwiLCBcIk5ldCBUb3JxdWUgKE5tKVwiLCBcIk9pbCBDYXBhY2l0eSAobClcIiwgXCJGdWVsIFRhbmsgQ2FwYWNpdHkgKGwpXCIpXG5cbnByaW50KGNhcl92ZWN0KVxuXG4jIEludmVzdGlnYXRlIHRoZSB2ZWN0b3JcbnZlY19jbHMgPSBjbGFzcyhjYXJfdmVjdClcbnZlY19sZW4gPSBsZW5ndGgoY2FyX3ZlY3QpXG52ZWNfYXR0ciA9IGF0dHJpYnV0ZXMoY2FyX3ZlY3QpXG5cbiMgcHJpbnQgYSBmb3JtYXR0ZWQgc3RyaW5nIHdpdGggdGhlIGluZm9ybWF0aW9uXG53cml0ZUxpbmVzKHNwcmludGYoXCJjbGFzczogJSBzLFxcbkxlbmd0aDogJSBzLFxcbkF0dHJpYnV0ZXM6ICUgc1wiLCB2ZWNfY2xzLCB2ZWNfbGVuLCB2ZWNfYXR0cikpXG5gYGAifQ== -->
+<pre class="r"><code>car_vect &lt;-  c(&quot;Displacement (cc)&quot; = 163, &quot;New Power Out (kw)&quot; = 3.60, &quot;Net Torque (Nm)&quot; = 10.30, &quot;Oil Capacity (l)&quot; = 0.58, &quot;Fuel Tank Capacity (l)&quot; = 3.10)
 
-print(my_vector)
+names(car_vect) &lt;- c(&quot;Displacement (cc)&quot;, &quot;New Power Out (kw)&quot;, &quot;Net Torque (Nm)&quot;, &quot;Oil Capacity (l)&quot;, &quot;Fuel Tank Capacity (l)&quot;)
 
+print(car_vect)
 
 # Investigate the vector
-vec_cls = class(my_vector)
-vec_len = length(my_vector)
-vec_attr = attributes(my_vector)
+vec_cls = class(car_vect)
+vec_len = length(car_vect)
+vec_attr = attributes(car_vect)
 
 # print a formatted string with the information
 writeLines(sprintf(&quot;class: % s,\nLength: % s,\nAttributes: % s&quot;, vec_cls, vec_len, vec_attr))</code></pre>
@@ -1806,42 +1796,189 @@ writeLines(sprintf(&quot;class: % s,\nLength: % s,\nAttributes: % s&quot;, vec_c
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG4gICAgIGVmZmljaWVudF92ZWN0b3IgPC0gYyhcIkRpc3BsYWNlbWVudCAoY2MpXCIgPSAxNjMsIFwiTmV0IFBvd2VyIE91dCAoa1cpXCI9My42LCBcIk5ldCBUb3JxdWUgKE5tKVwiPTEwLjMsIFwiT2lsIENhcGFjaXR5IChsKVwiPTAuNTgsIFwiRnVlbCBUYW5rIENhcGFjaXR5IChsKVwiPTMuMSlcblxucHJpbnQoZWZmaWNpZW50X3ZlY3RvcilcblxuIyBJbnZlc3RpZ2F0ZSB0aGUgdmVjdG9yXG52ZWNfY2xzID0gY2xhc3MobXlfdmVjdG9yKVxudmVjX2xlbiA9IGxlbmd0aChteV92ZWN0b3IpXG52ZWNfYXR0ciA9IGF0dHJpYnV0ZXMobXlfdmVjdG9yKVxuXG4jIHByaW50IGEgZm9ybWF0dGVkIHN0cmluZyB3aXRoIHRoZSBpbmZvcm1hdGlvblxud3JpdGVMaW5lcyhzcHJpbnRmKFwiY2xhc3M6ICUgcyxcXG5MZW5ndGg6ICUgcyxcXG5BdHRyaWJ1dGVzOiAlIHNcIiwgdmVjX2NscywgdmVjX2xlbiwgdmVjX2F0dHIpKVxuXG5gYGAifQ== -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5lZmZpY2llbnRfdmVjdG9yIDwtIGMoXCJEaXNwbGFjZW1lbnQgKGNjKVwiID0gMTYzLCBcIk5ldCBQb3dlciBPdXQgKGtXKVwiPTMuNiwgXCJOZXQgVG9ycXVlIChObSlcIj0xMC4zLCBcIk9pbCBDYXBhY2l0eSAobClcIj0wLjU4LCBcIkZ1ZWwgVGFuayBDYXBhY2l0eSAobClcIj0zLjEpXG5cbnByaW50KGVmZmljaWVudF92ZWN0b3IpXG5cbiMgSW52ZXN0aWdhdGUgdGhlIHZlY3RvclxudmVjX2NscyA9IGNsYXNzKGVmZmljaWVudF92ZWN0b3IpXG52ZWNfbGVuID0gbGVuZ3RoKGVmZmljaWVudF92ZWN0b3IpXG52ZWNfYXR0ciA9IGF0dHJpYnV0ZXMoZWZmaWNpZW50X3ZlY3RvcilcblxuIyBwcmludCBhIGZvcm1hdHRlZCBzdHJpbmcgd2l0aCB0aGUgaW5mb3JtYXRpb25cblxuY2F0KFwiXFxuVmVjdG9yIGluZm9ybWF0aW9uOiBcXG5jbGFzczpcIiwgYXMuY2hhcmFjdGVyKHZlY19jbHMpLCBcIlxcbkxlbmd0aDogXCIsIGFzLmNoYXJhY3Rlcih2ZWNfbGVuKSwgXCJcXG5BdHRyaWJ1dGVzOiBcIiwgYXMuY2hhcmFjdGVyKHZlY19hdHRyKSlcblxuYGBgIn0= -->
 <pre class="r"><code>
-     efficient_vector &lt;- c(&quot;Displacement (cc)&quot; = 163, &quot;Net Power Out (kW)&quot;=3.6, &quot;Net Torque (Nm)&quot;=10.3, &quot;Oil Capacity (l)&quot;=0.58, &quot;Fuel Tank Capacity (l)&quot;=3.1)
+efficient_vector &lt;- c(&quot;Displacement (cc)&quot; = 163, &quot;Net Power Out (kW)&quot;=3.6, &quot;Net Torque (Nm)&quot;=10.3, &quot;Oil Capacity (l)&quot;=0.58, &quot;Fuel Tank Capacity (l)&quot;=3.1)
 
 print(efficient_vector)
 
 # Investigate the vector
-vec_cls = class(my_vector)
-vec_len = length(my_vector)
-vec_attr = attributes(my_vector)
+vec_cls = class(efficient_vector)
+vec_len = length(efficient_vector)
+vec_attr = attributes(efficient_vector)
 
 # print a formatted string with the information
-writeLines(sprintf(&quot;class: % s,\nLength: % s,\nAttributes: % s&quot;, vec_cls, vec_len, vec_attr))
+
+cat(&quot;\nVector information: \nclass:&quot;, as.character(vec_cls), &quot;\nLength: &quot;, as.character(vec_len), &quot;\nAttributes: &quot;, as.character(vec_attr))
 </code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p>Question 2 – Family Create a vector with names of your family
-members, making clear which name is for your father, wife, husband, son,
-cat, etc…</p>
-<p>Question 3 - Matrices (a) Create the matrix below. ## AA BB CC DD EE
-## [1,] -3.3 -1.0 1.3 3.6 5.9 ## [2,] 8.2 10.5 12.8 15.1 17.4 ## [3,]
-19.7 22.0 24.3 26.6 28.9 Use str to examine the properties of this
-matrix and comment. (b)arithmetic with matrix Add 3.3 to the matrix
-above, and divide by 2.3. Show your results and comment. (c)Create the
-matrix below. Use prior results to complete this task as efficiently as
-possible. ## [,1] [,2] [,3] ## [1,] -3.3 22.0 15.1 ## [2,] 8.2 1.3 26.6
-## [3,] 19.7 12.8 5.9 ## [4,] -1.0 24.3 17.4 ## [5,] 10.5 3.6 28.9 Use
-str to examine the properties of this matrix and comment. (d) Create the
-matrix below. Use prior results to complete this task as efficiently as
-possible. ## [,1] [,2] [,3] ## [1,] -3 21 15 ## [2,] 8 1 26 ## [3,] 19
-12 5 ## [4,] -1 24 17 ## [5,] 10 3 28 Use str to examine the properties
-of this matrix and comment.</p>
+</div>
+<div id="question-2-family" class="section level2">
+<h2>Question 2 – Family</h2>
 <!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuI0NyZWF0ZSBhIHZlY3RvciB3aXRoIG5hbWVzIG9mIHlvdXIgZmFtaWx5IG1lbWJlcnMsIG1ha2luZyBjbGVhciB3aGljaCBuYW1lIGlzIGZvciB5b3VyIGZhdGhlciwgd2lmZSwgaHVzYmFuZCwgc29uLCBjYXQsIGV0Y+KAplxuXG5teV9mYW1pbHkgPC1jKFwiZmF0aGVyXCIgPSBcIk5pY2tcIiwgXCJtb3RoZXJcIiA9IFwiTWFyeVwiLCBcImJyb3RoZXJcIiA9IFwiRGF2aW5cIiwgXCJzaXN0ZXJcIiA9IFwiQnJpZGdldFwiLCBcIndpZmVcIiA9IFwiSm9jZWx5bmVcIiwgXCJzb25cIiA9IFwiT3dlblwiKVxuXG5teV9mYW1pbHlcbmBgYCJ9 -->
+<pre class="r"><code>#Create a vector with names of your family members, making clear which name is for your father, wife, husband, son, cat, etc…
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIkhvbWV3b3JrIDEiDQphdXRob3I6ICJNYWdudXMgV29vZCINCm91dHB1dDogaHRtbF9ub3RlYm9vaw0KLS0tDQo9PQ0KDQpgYGB7cn0NCnBsb3QoY2FycykNCmBgYA0KDQpRdWVzdGlvbiAxDQoNCihhKQlFbmdpbmUgMQ0KQ3JlYXRlIHRoZSB2ZWN0b3IgYmVsb3cuDQojIyAgICAgIERpc3BsYWNlbWVudCAoY2MpICAgICBOZXQgUG93ZXIgT3V0IChrVykgICAgICAgIE5ldCBUb3JxdWUgKE5tKSANCiMjICAgICAgICAgICAgICAgICAxNjMuMDAgICAgICAgICAgICAgICAgICAgMy42MCAgICAgICAgICAgICAgICAgIDEwLjMwIA0KIyMgICAgICAgT2lsIENhcGFjaXR5IChsKSBGdWVsIFRhbmsgQ2FwYWNpdHkgKGwpIA0KIyMgICAgICAgICAgICAgICAgICAgMC41OCAgICAgICAgICAgICAgICAgICAzLjEwDQpFeGFtaW5lIHRoZSBhdHRyaWJ1dGVzLCBkaW1lbnNpb24ocykgYW5kIGRhdGEgdHlwZSBmb3IgdGhpcyB2ZWN0b3IuIENvbW1lbnQuDQoNCmBgYHtyICJRMXMifQ0KIyBjcmVhdGUgYSB2ZWN0b3IgdXNpbmcga2V5IHZhbHVlIHBhaXJzDQpteV92ZWN0b3IgPC0gYygiRGlzcGxhY2VtZW50IChjYykiID0gMTYzLCAiTmV3IFBvd2VyIE91dCAoa3cpIiA9IDMuNjAsICJOZXQgVG9ycXVlIChObSkiID0gMTAuMzAsICJPaWwgQ2FwYWNpdHkgKGwpIiA9IDAuNTgsICJGdWVsIFRhbmsgQ2FwYWNpdHkgKGwpIiA9IDMuMTApDQoNCnByaW50KG15X3ZlY3RvcikNCg0KDQojIEludmVzdGlnYXRlIHRoZSB2ZWN0b3INCnZlY19jbHMgPSBjbGFzcyhteV92ZWN0b3IpDQp2ZWNfbGVuID0gbGVuZ3RoKG15X3ZlY3RvcikNCnZlY19hdHRyID0gYXR0cmlidXRlcyhteV92ZWN0b3IpDQoNCiMgcHJpbnQgYSBmb3JtYXR0ZWQgc3RyaW5nIHdpdGggdGhlIGluZm9ybWF0aW9uDQp3cml0ZUxpbmVzKHNwcmludGYoImNsYXNzOiAlIHMsXG5MZW5ndGg6ICUgcyxcbkF0dHJpYnV0ZXM6ICUgcyIsIHZlY19jbHMsIHZlY19sZW4sIHZlY19hdHRyKSkNCmBgYA0KDQpgYGB7ciAiUTFiIn0NCg0KICAgICBlZmZpY2llbnRfdmVjdG9yIDwtIGMoIkRpc3BsYWNlbWVudCAoY2MpIiA9IDE2MywgIk5ldCBQb3dlciBPdXQgKGtXKSI9My42LCAiTmV0IFRvcnF1ZSAoTm0pIj0xMC4zLCAiT2lsIENhcGFjaXR5IChsKSI9MC41OCwgIkZ1ZWwgVGFuayBDYXBhY2l0eSAobCkiPTMuMSkNCg0KcHJpbnQoZWZmaWNpZW50X3ZlY3RvcikNCg0KIyBJbnZlc3RpZ2F0ZSB0aGUgdmVjdG9yDQp2ZWNfY2xzID0gY2xhc3MobXlfdmVjdG9yKQ0KdmVjX2xlbiA9IGxlbmd0aChteV92ZWN0b3IpDQp2ZWNfYXR0ciA9IGF0dHJpYnV0ZXMobXlfdmVjdG9yKQ0KDQojIHByaW50IGEgZm9ybWF0dGVkIHN0cmluZyB3aXRoIHRoZSBpbmZvcm1hdGlvbg0Kd3JpdGVMaW5lcyhzcHJpbnRmKCJjbGFzczogJSBzLFxuTGVuZ3RoOiAlIHMsXG5BdHRyaWJ1dGVzOiAlIHMiLCB2ZWNfY2xzLCB2ZWNfbGVuLCB2ZWNfYXR0cikpDQoNCmBgYA0KDQoNCg0KUXVlc3Rpb24gMiDigJMgRmFtaWx5DQpDcmVhdGUgYSB2ZWN0b3Igd2l0aCBuYW1lcyBvZiB5b3VyIGZhbWlseSBtZW1iZXJzLCBtYWtpbmcgY2xlYXIgd2hpY2ggbmFtZSBpcyBmb3IgeW91ciBmYXRoZXIsIHdpZmUsIGh1c2JhbmQsIHNvbiwgY2F0LCBldGPigKYNCg0KUXVlc3Rpb24gMyAtIE1hdHJpY2VzDQooYSkJQ3JlYXRlIHRoZSBtYXRyaXggYmVsb3cuDQojIyAgICAgICAgQUEgICBCQiAgIENDICAgREQgICBFRQ0KIyMgWzEsXSAtMy4zIC0xLjAgIDEuMyAgMy42ICA1LjkNCiMjIFsyLF0gIDguMiAxMC41IDEyLjggMTUuMSAxNy40DQojIyBbMyxdIDE5LjcgMjIuMCAyNC4zIDI2LjYgMjguOQ0KVXNlIHN0ciB0byBleGFtaW5lIHRoZSBwcm9wZXJ0aWVzIG9mIHRoaXMgbWF0cml4IGFuZCBjb21tZW50Lg0KKGIpYXJpdGhtZXRpYyB3aXRoIG1hdHJpeA0KQWRkIDMuMyB0byB0aGUgbWF0cml4IGFib3ZlLCBhbmQgZGl2aWRlIGJ5IDIuMy4gU2hvdyB5b3VyIHJlc3VsdHMgYW5kIGNvbW1lbnQuDQogKGMpQ3JlYXRlIHRoZSBtYXRyaXggYmVsb3cuDQpVc2UgcHJpb3IgcmVzdWx0cyB0byBjb21wbGV0ZSB0aGlzIHRhc2sgYXMgZWZmaWNpZW50bHkgYXMgcG9zc2libGUuDQojIyAgICAgIFssMV0gWywyXSBbLDNdDQojIyBbMSxdIC0zLjMgMjIuMCAxNS4xDQojIyBbMixdICA4LjIgIDEuMyAyNi42DQojIyBbMyxdIDE5LjcgMTIuOCAgNS45DQojIyBbNCxdIC0xLjAgMjQuMyAxNy40DQojIyBbNSxdIDEwLjUgIDMuNiAyOC45DQpVc2Ugc3RyIHRvIGV4YW1pbmUgdGhlIHByb3BlcnRpZXMgb2YgdGhpcyBtYXRyaXggYW5kIGNvbW1lbnQuDQogKGQpIENyZWF0ZSB0aGUgbWF0cml4IGJlbG93Lg0KVXNlIHByaW9yIHJlc3VsdHMgdG8gY29tcGxldGUgdGhpcyB0YXNrIGFzIGVmZmljaWVudGx5IGFzIHBvc3NpYmxlLg0KIyMgICAgICBbLDFdIFssMl0gWywzXQ0KIyMgWzEsXSAgIC0zICAgMjEgICAxNQ0KIyMgWzIsXSAgICA4ICAgIDEgICAyNg0KIyMgWzMsXSAgIDE5ICAgMTIgICAgNQ0KIyMgWzQsXSAgIC0xICAgMjQgICAxNw0KIyMgWzUsXSAgIDEwICAgIDMgICAyOA0KVXNlIHN0ciB0byBleGFtaW5lIHRoZSBwcm9wZXJ0aWVzIG9mIHRoaXMgbWF0cml4IGFuZCBjb21tZW50Lg0KDQoNCg0K</div>
+my_family &lt;-c(&quot;father&quot; = &quot;Nick&quot;, &quot;mother&quot; = &quot;Mary&quot;, &quot;brother&quot; = &quot;Davin&quot;, &quot;sister&quot; = &quot;Bridget&quot;, &quot;wife&quot; = &quot;Jocelyne&quot;, &quot;son&quot; = &quot;Owen&quot;)
+
+my_family</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiICAgIGZhdGhlciAgICAgbW90aGVyICAgIGJyb3RoZXIgICAgIHNpc3RlciAgICAgICB3aWZlICAgICAgICBzb24gXG4gICAgXCJOaWNrXCIgICAgIFwiTWFyeVwiICAgIFwiRGF2aW5cIiAgXCJCcmlkZ2V0XCIgXCJKb2NlbHluZVwiICAgICBcIk93ZW5cIiBcbiJ9 -->
+<pre><code>    father     mother    brother     sister       wife        son 
+    &quot;Nick&quot;     &quot;Mary&quot;    &quot;Davin&quot;  &quot;Bridget&quot; &quot;Jocelyne&quot;     &quot;Owen&quot; </code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<div id="question-3---matrices" class="section level3">
+<h3>Question 3 - Matrices</h3>
+<p>#(a) Create the matrix below. AA BB CC DD EE [1,] -3.3 -1.0 1.3 3.6
+5.9 [2,] 8.2 10.5 12.8 15.1 17.4 [3,] 19.7 22.0 24.3 26.6 28.9 Use str
+to examine the properties of this matrix and comment.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyhhKVx0Q3JlYXRlIHRoZSBtYXRyaXggYmVsb3cuXG4jICAgICAgICBBQSAgIEJCICAgQ0MgICBERCAgIEVFXG4jIFsxLF0gLTMuMyAtMS4wICAxLjMgIDMuNiAgNS45XG4jIFsyLF0gIDguMiAxMC41IDEyLjggMTUuMSAxNy40XG4jIFszLF0gMTkuNyAyMi4wIDI0LjMgMjYuNiAyOC45XG4jIFVzZSBzdHIgdG8gZXhhbWluZSB0aGUgcHJvcGVydGllcyBvZiB0aGlzIG1hdHJpeCBhbmQgY29tbWVudC5cblxudmVjX2RhdGEgPC0gYygtMy4zLCA4LjIsIDE5LjcsIC0xLjAsIDEwLjUsIDIyLjAsIDEuMywgMTIuOCwgMjQuMywgMy42LCAxNS4xLCAyNi42LCA1LjksIDE3LjQsIDI4LjkpXG5tYXRfZGF0YSA8LSBtYXRyaXgoZGF0YSA9IHZlY19kYXRhLCBucm93PTMsIG5jb2w9NSlcbmNvbG5hbWVzKG1hdF9kYXRhKSA8LSBjKFwiQUFcIiwgXCJCQlwiLCBcIkNDXCIsIFwiRERcIiwgXCJFRVwiKVxubWF0X2RhdGFcbmBgYCJ9 -->
+<pre class="r"><code>#(a)    Create the matrix below.
+#        AA   BB   CC   DD   EE
+# [1,] -3.3 -1.0  1.3  3.6  5.9
+# [2,]  8.2 10.5 12.8 15.1 17.4
+# [3,] 19.7 22.0 24.3 26.6 28.9
+# Use str to examine the properties of this matrix and comment.
+
+vec_data &lt;- c(-3.3, 8.2, 19.7, -1.0, 10.5, 22.0, 1.3, 12.8, 24.3, 3.6, 15.1, 26.6, 5.9, 17.4, 28.9)
+mat_data &lt;- matrix(data = vec_data, nrow=3, ncol=5)
+colnames(mat_data) &lt;- c(&quot;AA&quot;, &quot;BB&quot;, &quot;CC&quot;, &quot;DD&quot;, &quot;EE&quot;)
+mat_data</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiICAgICAgIEFBICAgQkIgICBDQyAgIEREICAgRUVcblsxLF0gLTMuMyAtMS4wICAxLjMgIDMuNiAgNS45XG5bMixdICA4LjIgMTAuNSAxMi44IDE1LjEgMTcuNFxuWzMsXSAxOS43IDIyLjAgMjQuMyAyNi42IDI4LjlcbiJ9 -->
+<pre><code>       AA   BB   CC   DD   EE
+[1,] -3.3 -1.0  1.3  3.6  5.9
+[2,]  8.2 10.5 12.8 15.1 17.4
+[3,] 19.7 22.0 24.3 26.6 28.9</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3RyKG1hdF9kYXRhKVxuYGBgIn0= -->
+<pre class="r"><code>str(mat_data)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiIG51bSBbMTozLCAxOjVdIC0zLjMgOC4yIDE5LjcgLTEgMTAuNSAyMiAxLjMgMTIuOCAyNC4zIDMuNiAuLi5cbiAtIGF0dHIoKiwgXCJkaW1uYW1lc1wiKT1MaXN0IG9mIDJcbiAgLi4kIDogTlVMTFxuICAuLiQgOiBjaHIgWzE6NV0gXCJBQVwiIFwiQkJcIiBcIkNDXCIgXCJERFwiIC4uLlxuIn0= -->
+<pre><code> num [1:3, 1:5] -3.3 8.2 19.7 -1 10.5 22 1.3 12.8 24.3 3.6 ...
+ - attr(*, &quot;dimnames&quot;)=List of 2
+  ..$ : NULL
+  ..$ : chr [1:5] &quot;AA&quot; &quot;BB&quot; &quot;CC&quot; &quot;DD&quot; ...</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>The data provided shows the shape of the matrix (3 rows and 5
+columns), and lists two attributes available (dimensions, and the row
+and column names).The matrix is type numeric.</p>
+</div>
+<div id="barithmetic-with-matrix" class="section level3">
+<h3>(b)arithmetic with matrix</h3>
+<p>Add 3.3 to the matrix above, and divide by 2.3. Show your results and
+comment.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBBZGQgMy4zIHRvIHRoZSBtYXRyaXggYWJvdmUsIGFuZCBkaXZpZGUgYnkgMi4zLiBTaG93IHlvdXIgcmVzdWx0cyBhbmQgY29tbWVudC5cbm1hdF9kYXRhMiA8LSBtYXRfZGF0YVxubWF0X2RhdGEyXG5gYGAifQ== -->
+<pre class="r"><code># Add 3.3 to the matrix above, and divide by 2.3. Show your results and comment.
+mat_data2 &lt;- mat_data
+mat_data2</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiICAgICAgIEFBICAgQkIgICBDQyAgIEREICAgRUVcblsxLF0gLTMuMyAtMS4wICAxLjMgIDMuNiAgNS45XG5bMixdICA4LjIgMTAuNSAxMi44IDE1LjEgMTcuNFxuWzMsXSAxOS43IDIyLjAgMjQuMyAyNi42IDI4LjlcbiJ9 -->
+<pre><code>       AA   BB   CC   DD   EE
+[1,] -3.3 -1.0  1.3  3.6  5.9
+[2,]  8.2 10.5 12.8 15.1 17.4
+[3,] 19.7 22.0 24.3 26.6 28.9</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubWF0X2RhdGEyIDwtIG1hdF9kYXRhMiArIDMuM1xubWF0X2RhdGEyXG5gYGAifQ== -->
+<pre class="r"><code>mat_data2 &lt;- mat_data2 + 3.3
+mat_data2</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiICAgICAgIEFBICAgQkIgICBDQyAgIEREICAgRUVcblsxLF0gIDAuMCAgMi4zICA0LjYgIDYuOSAgOS4yXG5bMixdIDExLjUgMTMuOCAxNi4xIDE4LjQgMjAuN1xuWzMsXSAyMy4wIDI1LjMgMjcuNiAyOS45IDMyLjJcbiJ9 -->
+<pre><code>       AA   BB   CC   DD   EE
+[1,]  0.0  2.3  4.6  6.9  9.2
+[2,] 11.5 13.8 16.1 18.4 20.7
+[3,] 23.0 25.3 27.6 29.9 32.2</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubWF0X2RhdGEyIDwtIG1hdF9kYXRhMiAvIDIuM1xubWF0X2RhdGEyXG5gYGAifQ== -->
+<pre class="r"><code>mat_data2 &lt;- mat_data2 / 2.3
+mat_data2</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiICAgICBBQSBCQiBDQyBERCBFRVxuWzEsXSAgMCAgMSAgMiAgMyAgNFxuWzIsXSAgNSAgNiAgNyAgOCAgOVxuWzMsXSAxMCAxMSAxMiAxMyAxNFxuIn0= -->
+<pre><code>     AA BB CC DD EE
+[1,]  0  1  2  3  4
+[2,]  5  6  7  8  9
+[3,] 10 11 12 13 14</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Default operations appear to be element-wise. Works as expected.</p>
+</div>
+<div id="ccreate-the-matrix-below." class="section level3">
+<h3>(c)Create the matrix below.</h3>
+<p>Use prior results to complete this task as efficiently as possible.
+Use str to examine the properties of this matrix and comment.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubWF0X2RhdGEzIDwtIG1hdHJpeChkYXRhID0gdmVjX2RhdGEsIG5yb3cgPSA1LCBuY29sID0gMylcbm1hdF9kYXRhM1xuYGBgIn0= -->
+<pre class="r"><code>mat_data3 &lt;- matrix(data = vec_data, nrow = 5, ncol = 3)
+mat_data3</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiICAgICBbLDFdIFssMl0gWywzXVxuWzEsXSAtMy4zIDIyLjAgMTUuMVxuWzIsXSAgOC4yICAxLjMgMjYuNlxuWzMsXSAxOS43IDEyLjggIDUuOVxuWzQsXSAtMS4wIDI0LjMgMTcuNFxuWzUsXSAxMC41ICAzLjYgMjguOVxuIn0= -->
+<pre><code>     [,1] [,2] [,3]
+[1,] -3.3 22.0 15.1
+[2,]  8.2  1.3 26.6
+[3,] 19.7 12.8  5.9
+[4,] -1.0 24.3 17.4
+[5,] 10.5  3.6 28.9</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3RyKG1hdF9kYXRhMylcbmBgYCJ9 -->
+<pre class="r"><code>str(mat_data3)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiIG51bSBbMTo1LCAxOjNdIC0zLjMgOC4yIDE5LjcgLTEgMTAuNSAyMiAxLjMgMTIuOCAyNC4zIDMuNiAuLi5cbiJ9 -->
+<pre><code> num [1:5, 1:3] -3.3 8.2 19.7 -1 10.5 22 1.3 12.8 24.3 3.6 ...</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>The str() function returns the shape of the matrix, plus the values
+in the matrix as a single vector.</p>
+</div>
+<div id="d-create-the-matrix-below." class="section level3">
+<h3>(d) Create the matrix below.</h3>
+<p>Use prior results to complete this task as efficiently as possible.
+Use str to examine the properties of this matrix and comment.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubWF0X2RhdGE0IDwtIG1hdHJpeChhcy5pbnRlZ2VyKHZlY19kYXRhKSwgbnJvdz01LCBuY29sPTMpXG5tYXRfZGF0YTRbMSwgMl0gPSAyMVxuc3RyKG1hdF9kYXRhNClcbmBgYCJ9 -->
+<pre class="r"><code>mat_data4 &lt;- matrix(as.integer(vec_data), nrow=5, ncol=3)
+mat_data4[1, 2] = 21
+str(mat_data4)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiIG51bSBbMTo1LCAxOjNdIC0zIDggMTkgLTEgMTAgMjEgMSAxMiAyNCAzIC4uLlxuIn0= -->
+<pre><code> num [1:5, 1:3] -3 8 19 -1 10 21 1 12 24 3 ...</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubWF0X2RhdGE0XG5gYGAifQ== -->
+<pre class="r"><code>mat_data4</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiICAgICBbLDFdIFssMl0gWywzXVxuWzEsXSAgIC0zICAgMjEgICAxNVxuWzIsXSAgICA4ICAgIDEgICAyNlxuWzMsXSAgIDE5ICAgMTIgICAgNVxuWzQsXSAgIC0xICAgMjQgICAxN1xuWzUsXSAgIDEwICAgIDMgICAyOFxuIn0= -->
+<pre><code>     [,1] [,2] [,3]
+[1,]   -3   21   15
+[2,]    8    1   26
+[3,]   19   12    5
+[4,]   -1   24   17
+[5,]   10    3   28</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>The matrix is of type numeric. Interesting, as the data I provided it
+was of type integer due to the use of as.integer(). Cool! I have mostly
+used the tidyverse dataframe, so using the base matrix was new to
+me.</p>
+<!-- rnb-text-end -->
+</div>
+</div>
+
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIkhvbWV3b3JrIDEiDQphdXRob3I6ICJNYWdudXMgV29vZCINCm91dHB1dDogaHRtbF9ub3RlYm9vaw0KLS0tDQo9PQ0KDQojIyMgUXVlc3Rpb24gMSAoYSkJRW5naW5lIDENCkV4YW1pbmUgdGhlIGF0dHJpYnV0ZXMsIGRpbWVuc2lvbihzKSBhbmQgZGF0YSB0eXBlIGZvciB0aGlzIHZlY3Rvci4gQ29tbWVudC4NCg0KYGBge3IgIlExYSJ9DQpjYXJfdmVjdCA8LSAgYygiRGlzcGxhY2VtZW50IChjYykiID0gMTYzLCAiTmV3IFBvd2VyIE91dCAoa3cpIiA9IDMuNjAsICJOZXQgVG9ycXVlIChObSkiID0gMTAuMzAsICJPaWwgQ2FwYWNpdHkgKGwpIiA9IDAuNTgsICJGdWVsIFRhbmsgQ2FwYWNpdHkgKGwpIiA9IDMuMTApDQoNCm5hbWVzKGNhcl92ZWN0KSA8LSBjKCJEaXNwbGFjZW1lbnQgKGNjKSIsICJOZXcgUG93ZXIgT3V0IChrdykiLCAiTmV0IFRvcnF1ZSAoTm0pIiwgIk9pbCBDYXBhY2l0eSAobCkiLCAiRnVlbCBUYW5rIENhcGFjaXR5IChsKSIpDQoNCnByaW50KGNhcl92ZWN0KQ0KDQojIEludmVzdGlnYXRlIHRoZSB2ZWN0b3INCnZlY19jbHMgPSBjbGFzcyhjYXJfdmVjdCkNCnZlY19sZW4gPSBsZW5ndGgoY2FyX3ZlY3QpDQp2ZWNfYXR0ciA9IGF0dHJpYnV0ZXMoY2FyX3ZlY3QpDQoNCiMgcHJpbnQgYSBmb3JtYXR0ZWQgc3RyaW5nIHdpdGggdGhlIGluZm9ybWF0aW9uDQp3cml0ZUxpbmVzKHNwcmludGYoImNsYXNzOiAlIHMsXG5MZW5ndGg6ICUgcyxcbkF0dHJpYnV0ZXM6ICUgcyIsIHZlY19jbHMsIHZlY19sZW4sIHZlY19hdHRyKSkNCmBgYA0KDQpgYGB7ciAiUTFiIn0NCg0KZWZmaWNpZW50X3ZlY3RvciA8LSBjKCJEaXNwbGFjZW1lbnQgKGNjKSIgPSAxNjMsICJOZXQgUG93ZXIgT3V0IChrVykiPTMuNiwgIk5ldCBUb3JxdWUgKE5tKSI9MTAuMywgIk9pbCBDYXBhY2l0eSAobCkiPTAuNTgsICJGdWVsIFRhbmsgQ2FwYWNpdHkgKGwpIj0zLjEpDQoNCnByaW50KGVmZmljaWVudF92ZWN0b3IpDQoNCiMgSW52ZXN0aWdhdGUgdGhlIHZlY3Rvcg0KdmVjX2NscyA9IGNsYXNzKGVmZmljaWVudF92ZWN0b3IpDQp2ZWNfbGVuID0gbGVuZ3RoKGVmZmljaWVudF92ZWN0b3IpDQp2ZWNfYXR0ciA9IGF0dHJpYnV0ZXMoZWZmaWNpZW50X3ZlY3RvcikNCg0KIyBwcmludCBhIGZvcm1hdHRlZCBzdHJpbmcgd2l0aCB0aGUgaW5mb3JtYXRpb24NCg0KY2F0KCJcblZlY3RvciBpbmZvcm1hdGlvbjogXG5jbGFzczoiLCBhcy5jaGFyYWN0ZXIodmVjX2NscyksICJcbkxlbmd0aDogIiwgYXMuY2hhcmFjdGVyKHZlY19sZW4pLCAiXG5BdHRyaWJ1dGVzOiAiLCBhcy5jaGFyYWN0ZXIodmVjX2F0dHIpKQ0KDQpgYGANCg0KDQoNCiMjIFF1ZXN0aW9uIDIg4oCTIEZhbWlseQ0KDQpgYGB7cn0NCiNDcmVhdGUgYSB2ZWN0b3Igd2l0aCBuYW1lcyBvZiB5b3VyIGZhbWlseSBtZW1iZXJzLCBtYWtpbmcgY2xlYXIgd2hpY2ggbmFtZSBpcyBmb3IgeW91ciBmYXRoZXIsIHdpZmUsIGh1c2JhbmQsIHNvbiwgY2F0LCBldGPigKYNCg0KbXlfZmFtaWx5IDwtYygiZmF0aGVyIiA9ICJOaWNrIiwgIm1vdGhlciIgPSAiTWFyeSIsICJicm90aGVyIiA9ICJEYXZpbiIsICJzaXN0ZXIiID0gIkJyaWRnZXQiLCAid2lmZSIgPSAiSm9jZWx5bmUiLCAic29uIiA9ICJPd2VuIikNCg0KbXlfZmFtaWx5DQpgYGANCg0KIyMjIFF1ZXN0aW9uIDMgLSBNYXRyaWNlcw0KIyhhKQlDcmVhdGUgdGhlIG1hdHJpeCBiZWxvdy4NCiAgICAgICAgQUEgICBCQiAgIENDICAgREQgICBFRQ0KIFsxLF0gLTMuMyAtMS4wICAxLjMgIDMuNiAgNS45DQogWzIsXSAgOC4yIDEwLjUgMTIuOCAxNS4xIDE3LjQNCiBbMyxdIDE5LjcgMjIuMCAyNC4zIDI2LjYgMjguOQ0KIFVzZSBzdHIgdG8gZXhhbWluZSB0aGUgcHJvcGVydGllcyBvZiB0aGlzIG1hdHJpeCBhbmQgY29tbWVudC4NCg0KYGBge3J9DQoNCnZlY19kYXRhIDwtIGMoLTMuMywgOC4yLCAxOS43LCAtMS4wLCAxMC41LCAyMi4wLCAxLjMsIDEyLjgsIDI0LjMsIDMuNiwgMTUuMSwgMjYuNiwgNS45LCAxNy40LCAyOC45KQ0KbWF0X2RhdGEgPC0gbWF0cml4KGRhdGEgPSB2ZWNfZGF0YSwgbnJvdz0zLCBuY29sPTUpDQpjb2xuYW1lcyhtYXRfZGF0YSkgPC0gYygiQUEiLCAiQkIiLCAiQ0MiLCAiREQiLCAiRUUiKQ0KbWF0X2RhdGENCg0Kc3RyKG1hdF9kYXRhKQ0KDQpgYGANClRoZSBkYXRhIHByb3ZpZGVkIHNob3dzIHRoZSBzaGFwZSBvZiB0aGUgbWF0cml4ICgzIHJvd3MgYW5kIDUgY29sdW1ucyksIGFuZCBsaXN0cyB0d28gYXR0cmlidXRlcyBhdmFpbGFibGUgKGRpbWVuc2lvbnMsIGFuZCB0aGUgcm93IGFuZCBjb2x1bW4gbmFtZXMpLlRoZSBtYXRyaXggaXMgdHlwZSBudW1lcmljLiANCg0KIyMjIChiKWFyaXRobWV0aWMgd2l0aCBtYXRyaXgNCkFkZCAzLjMgdG8gdGhlIG1hdHJpeCBhYm92ZSwgYW5kIGRpdmlkZSBieSAyLjMuIFNob3cgeW91ciByZXN1bHRzIGFuZCBjb21tZW50Lg0KYGBge3J9DQoNCm1hdF9kYXRhMiA8LSBtYXRfZGF0YQ0KbWF0X2RhdGEyDQptYXRfZGF0YTIgPC0gbWF0X2RhdGEyICsgMy4zDQptYXRfZGF0YTINCm1hdF9kYXRhMiA8LSBtYXRfZGF0YTIgLyAyLjMNCm1hdF9kYXRhMg0KDQoNCmBgYA0KRGVmYXVsdCBvcGVyYXRpb25zIGFwcGVhciB0byBiZSBlbGVtZW50LXdpc2UuIFdvcmtzIGFzIGV4cGVjdGVkLiANCg0KIyMjIChjKUNyZWF0ZSB0aGUgbWF0cml4IGJlbG93Lg0KVXNlIHByaW9yIHJlc3VsdHMgdG8gY29tcGxldGUgdGhpcyB0YXNrIGFzIGVmZmljaWVudGx5IGFzIHBvc3NpYmxlLg0KVXNlIHN0ciB0byBleGFtaW5lIHRoZSBwcm9wZXJ0aWVzIG9mIHRoaXMgbWF0cml4IGFuZCBjb21tZW50Lg0KDQpgYGB7cn0NCm1hdF9kYXRhMyA8LSBtYXRyaXgoZGF0YSA9IHZlY19kYXRhLCBucm93ID0gNSwgbmNvbCA9IDMpDQptYXRfZGF0YTMNCg0Kc3RyKG1hdF9kYXRhMykNCg0KYGBgDQoNClRoZSBzdHIoKSBmdW5jdGlvbiByZXR1cm5zIHRoZSBzaGFwZSBvZiB0aGUgbWF0cml4LCBwbHVzIHRoZSB2YWx1ZXMgaW4gdGhlIG1hdHJpeCBhcyBhIHNpbmdsZSB2ZWN0b3IuIA0KDQoNCiMjIyAoZCkgQ3JlYXRlIHRoZSBtYXRyaXggYmVsb3cuDQpVc2UgcHJpb3IgcmVzdWx0cyB0byBjb21wbGV0ZSB0aGlzIHRhc2sgYXMgZWZmaWNpZW50bHkgYXMgcG9zc2libGUuDQpVc2Ugc3RyIHRvIGV4YW1pbmUgdGhlIHByb3BlcnRpZXMgb2YgdGhpcyBtYXRyaXggYW5kIGNvbW1lbnQuDQoNCmBgYHtyfQ0KbWF0X2RhdGE0IDwtIG1hdHJpeChhcy5pbnRlZ2VyKHZlY19kYXRhKSwgbnJvdz01LCBuY29sPTMpDQptYXRfZGF0YTRbMSwgMl0gPSAyMQ0Kc3RyKG1hdF9kYXRhNCkNCm1hdF9kYXRhNA0KYGBgDQpUaGUgbWF0cml4IGlzIG9mIHR5cGUgbnVtZXJpYy4gSW50ZXJlc3RpbmcsIGFzIHRoZSBkYXRhIEkgcHJvdmlkZWQgaXQgd2FzIG9mIHR5cGUgaW50ZWdlciBkdWUgdG8gdGhlIHVzZSBvZiBhcy5pbnRlZ2VyKCkuIENvb2whIEkgaGF2ZSBtb3N0bHkgdXNlZCB0aGUgdGlkeXZlcnNlIGRhdGFmcmFtZSwgc28gdXNpbmcgdGhlIGJhc2UgbWF0cml4IHdhcyBuZXcgdG8gbWUuIA0KDQoNCg==</div>
 
 
 
