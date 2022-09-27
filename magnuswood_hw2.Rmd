@@ -1,0 +1,155 @@
+---
+title: 'AFS505 HW2: Data in R, Fall 2022'
+author: "Magnus Wood"
+date: "9-6-22"
+output:
+  html_document:
+    df_print: paged
+---
+
+## Question 1
+###(a) Crop vector
+Create the vector shown below:
+[1] “apples” “wheat” “soybeans” “potatoes” “grapes” “cherries” “almonds” “hay”
+[9] “hops”
+ 
+```{r}
+ag_vec <- c("apples", "wheat", "soybeans", "potatoes", "grapes", "cherries", "almonds", "hay", "hops")
+
+ag_vec
+```
+
+### (b) Address crop vector
+Replace soybeans with oranges.
+Use indexing to create a subset of the crop vector with only major crops grown in Washington.
+Use a logical vector to create a subset of the crop vector with only major crops grown in Washington.
+```{r}
+ag_vec[3] <- "oranges"
+
+ag_vec
+
+wa_log <- c(T, T, F, T, T, T, F, T, T)
+
+ag_vec[wa_log]
+
+```
+
+### (c) Reorder WA crop vector
+Save the Washington major crop vector (subset of original vector).
+Reorder the Washington major crop vector as shown: 
+[1] “apples” “grapes” “cherries” “potatoes” “hops” “wheat” “hay”
+Use the order() function to sort the Washington major crop vector in alphabetical order.
+
+```{r}
+# save subset as new vector
+wa_ag_vec <- ag_vec[wa_log]
+cat("subset:", wa_ag_vec, "\n\n")
+
+# sort according to given order
+ag_order <- factor(wa_ag_vec, 
+                   levels=c("apples", "grapes", "cherries", 
+                            "potatoes", "hops", "wheat"), 
+                   ordered=T)
+
+cat("ordered: ", wa_ag_vec[order(ag_order)], "\n\n")
+
+# alphabetical order
+cat("alpha order: ", wa_ag_vec[order(wa_ag_vec)])
+      
+```
+
+## Question 2
+### (a) address matrix with positive indices
+Create the matrix below. 
+      [,1] [,2] [,3] [,4] [,5]
+ [1,]    1    2    3    4    5
+ [2,]    6    7    8    9   10
+ [3,]   11   12   13   14   15
+ [4,]   16   17   18   19   20
+
+```{r}
+# create the matrix
+x_mat <- matrix(c(1, 6, 11, 16, 2, 7, 12, 17, 3, 8, 13, 18, 4, 9, 14, 19, 5, 10, 15, 20), nrow = 4, ncol=5)
+x_mat
+```
+Extract the following subset: 
+      [,1] [,2]
+ [1,]    8    9
+ [2,]   13   14
+ [3,]   18   19
+
+```{r}
+mat_sub1 <- x_mat[2:4, 3:4]
+mat_sub1
+```
+
+Extract the following subset:
+ [1]  6  8 10
+
+```{r}
+mat_sub2 <- x_mat[2, c(1, 3, 5)]
+mat_sub2
+```
+ 
+### (b) subset matrix with negative indices
+Extract the following subset: 
+      [,1] [,2] [,3] [,4] [,5]
+ [1,]    1    2    3    4    5
+ [2,]    6    7    8    9   10
+ [3,]   16   17   18   19   20
+
+```{r}
+
+mat_sub3 <- x_mat[-3,]
+mat_sub3
+```
+
+Extract the following subset: 
+      [,1] [,2] [,3]
+ [1,]    1    2    4
+ [2,]   11   12   14
+ [3,]   16   17   19
+
+```{r}
+##      [,1] [,2] [,3] [,4] [,5]
+## [1,]    1    2    3    4    5
+## [2,]    6    7    8    9   10
+## [3,]   11   12   13   14   15
+## [4,]   16   17   18   19   20
+mat_sub4 <- x_mat[-2, c(-3, -5)]
+mat_sub4
+```
+
+### (c) replace values in matrix
+Create a duplicate matrix for each step of these exercises so the original matrix remains unaltered.
+      [,1] [,2] [,3] [,4] [,5]
+ [1,]    1    2    3    4    5
+ [2,]    6    7    8    9   10
+ [3,]   11   12   13   14   15
+ [4,]   16   17   18   19   20
+
+Replace 9, 14 and 19 with 88.
+```{r}
+x_mat1 <- x_mat
+x_mat1[c(1, 3, 4), 4] <- 88
+x_mat1
+
+```
+
+
+Replace 9, 14 and 19 with 23, 24, 25.
+
+```{r}
+x_mat2 <- x_mat
+x_mat2[c(1, 3, 4), 4] <- c(23, 24, 25)
+x_mat2
+
+```
+
+Remove the value of 8.
+```{r}
+x_mat3 <- x_mat
+x_mat3[2, 3] <- NA
+x_mat3
+```
+
