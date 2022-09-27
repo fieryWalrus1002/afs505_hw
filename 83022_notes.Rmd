@@ -1,0 +1,74 @@
+---
+
+title: "class notes"
+date: "8/30/22"
+author: "Magnus Wood"
+output: html_notebook
+---
+
+Basics of R Markdown are found [here]. (https://rmarkdown.rstudio.com/lesson-8.html)
+
+Data types in R:
+* character
+* numeric
+* integer
+* logical
+* complex
+* raw
+
+Only data of a single type may be stored in a vector. If two data types are present in the same vector, R will change the data type for that vector to a less-restrictive type that can handle both. Character seems common as the least-restrictive. 
+
+
+str() - object related information
+typeof() - what is the objects type(low-level)?
+  length() - how long is it? What about two-dimensional objects?
+  attributes() - does it have any metadata?
+
+## Data Structures in R
+* atomic vector
+* list
+* array/matrix
+* data frame
+* factors
+
+### vectors
+
+Vector is most common data type in R and can be either atomic or lists
+
+- Matrix: extension of numeric or character vetors. Not a separate type, just a vector with multiple dimensions
+- List: act as containers. Not rest to single mode, can mix data types. 
+- Data Frame: tabular data structure. rectangular list.
+- Factors: similar to the nomical/ordinal categorical data types. Factors can be ordered or not to reflect this differences. A factor has set levels. 
+
+
+
+```{r numericVector}
+num_vec <- c(123.1, 123, 1583, 989, 343)
+str(num_vec)
+typeof(num_vec)
+length(num_vec)
+attributes(num_vec)
+
+cat("\nsum of numeric vector: ", sum(num_vec), "\n")
+
+res_str <- sprintf("sum of numeric vector: % s", sum(num_vec))
+print(res_str)
+```
+```{r logicalVector}
+print("logical vectors can be added together too.")
+log_vec <- c(T, T,FALSE, T, TRUE)
+str(log_vec)
+typeof(log_vec)
+length(log_vec)
+attributes(log_vec)
+
+cat("\nsum of vector: ", sum(log_vec), "\n")
+
+res_str <- sprintf("sum of  vector: % s", sum(log_vec))
+print(res_str)
+```
+
+```{r}
+
+```
+

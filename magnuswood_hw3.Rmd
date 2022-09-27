@@ -1,0 +1,358 @@
+---
+title: 'Homework 3 '
+author: "Magnus Wood"
+output:
+  html_document:
+    df_print: paged
+---
+
+
+## Question 1 - simple lists
+### (a) List1
+
+Create list1 shown below:
+```
+## [[1]]
+## [1] "Soils 502"
+## 
+## [[2]]
+## [1] 1 3 4 5
+## 
+## [[3]]
+##      [,1] [,2]
+## [1,]    1    2
+## [2,]    3    4
+## [3,]    5    6
+```
+```{r}
+list1 <- list("Soils 502", c(1,3,4,5), matrix(seq(1:6), nrow=3, ncol=2, byrow=TRUE))
+
+list1
+```
+
+Extract the following from list1: 
+```
+##      [,1] [,2]
+## [1,]    1    2
+## [2,]    3    4
+## [3,]    5    6
+```
+
+```{r}
+list1[[3]]
+```
+
+Extract the following from list1: 
+```
+## [[1]]
+## [1] "Soils 502"
+## 
+## [[2]]
+##      [,1] [,2]
+## [1,]    1    2
+## [2,]    3    4
+## [3,]    5    6
+## 
+## [[1]]
+## [1] "Soils 502"
+## 
+## [[2]]
+##      [,1] [,2]
+## [1,]    1    2
+## [2,]    3    4
+## [3,]    5    6
+```
+```{r}
+list1.1 <- list1[c(1, 3)]
+list1.1
+
+list1.2 <- list1[c(1, 3)]
+list1.2
+```
+Why twice? Typo?
+
+###(b) list2
+Create the following list:
+Why aren’t grand slam wins structured as a data frame or matrix?
+```
+## $name
+## $name$Last
+## [1] "Williams"
+## 
+## $name$First
+## [1] "Serena"
+## 
+## 
+## $age
+## [1] 36
+## 
+## $record
+##   wins losses 
+##    801    136 
+## 
+## $grand.slam.wins
+## $grand.slam.wins$Australian.Open
+## [1] 2003 2005 2007 2009 2010 2015 2017
+## 
+## $grand.slam.wins$French.Open
+## [1] 2002 2013 2015
+## 
+## $grand.slam.wins$Wimbledon
+## [1] 2002 2003 2009 2010 2012 2015 2016
+## 
+## $grand.slam.wins$US.Open
+## [1] 1999 2002 2008 2012 2013 2014
+```
+
+```{r}
+# list of mixed data structures, including sublists and named vectors
+list2 <- list(name = list(Last = "Williams",
+                          First = "Serena"),
+              age = 36,
+              record = c(wins = 801, losses = 136),
+              grand.slam.wins = list(
+                Australian.Open = c(2003, 
+                                    2005, 
+                                    2007, 
+                                    2009,
+                                    2010, 
+                                    2015,
+                                    2017),
+                French.Open = c(2002,
+                                2013,
+                                2015),
+                Wimbledon = c(2002,
+                              2003,
+                              2009,
+                              2010,
+                              2012,
+                              2015,
+                              2016),
+                US.Open = c(1999,
+                            2002,
+                            2008,
+                            2012,
+                            2013,
+                            2014)
+                ))
+
+print(list2)
+```
+
+
+
+##Question 2 - cbind, rbind
+Create the following vectors and matrices.
+```
+## [1]  3  5  6 12
+##
+## [1]  TRUE FALSE  TRUE  TRUE
+##
+## [1] "A" "B" "C" "D" "E"
+##
+##      [,1] [,2] [,3] [,4] [,5]
+## [1,]    2   14   26    5   17
+## [2,]    5   17   29    8   20
+## [3,]    8   20   32   11   23
+## [4,]   11   23    2   14   26
+##
+##      [,1] [,2] [,3] [,4]
+## [1,]    1   -1    1    0
+## [2,]    0    0   -1    1
+```
+```{r}
+
+num.vec <- c(3, 5, 6, 12)
+log.vec <- c(TRUE, FALSE, TRUE, TRUE)
+char.vec <- c("A", "B", "C", "D", "E")
+
+mat1 <- matrix(data= c(2, 14, 26, 5, 17,
+                       5, 17, 29, 8, 20,
+                       8, 20, 32, 11, 23,
+                       11, 23, 2, 14, 26),
+               byrow=TRUE,
+               ncol=5,
+               nrow=4)
+
+mat2 <- matrix(data = c(1, -1, 1, 0,
+                        0, 0, -1, 1),
+               byrow=TRUE,
+               ncol=4,
+               nrow=2)
+cat("Created elements: \n\n")
+cat("num.vec: \n", num.vec,"\n\nlog.vec: \n", log.vec,"\n\nchar.vec: \n", char.vec,"\nmat1: \n\n")
+mat1
+cat("\nmat2: \n\n")
+mat2
+```
+
+
+###(a) cbind
+Create the following three outputs using data objects created above and a single cbind() command (for each output).
+```
+##         v2
+## [1,]  3  1
+## [2,]  5  0
+## [3,]  6  1
+## [4,] 12  1
+##      [,1] [,2]   
+## [1,] "A"  "TRUE" 
+## [2,] "B"  "FALSE"
+## [3,] "C"  "TRUE" 
+## [4,] "D"  "TRUE" 
+## [5,] "E"  "TRUE"
+##      [,1] [,2] [,3] [,4] [,5] [,6]
+## [1,]    2   14   26    5   17    3
+## [2,]    5   17   29    8   20    5
+## [3,]    8   20   32   11   23    6
+## [4,]   11   23    2   14   26   12
+```
+
+
+```{r, warning=FALSE}
+# There has to be an easier way to do this.
+
+cb1 <- cbind(num.vec, c(abs(mat2[,2]), abs(mat2[,3])), deparse.level=0)
+cb1
+
+# suppress errors because log.vec only had four values, but 
+# repeating the first one gave use the "right" answer...
+cb2 <- cbind(char.vec, log.vec, deparse.level = 0)
+cb2
+
+
+cb3 <- cbind(mat1, num.vec, deparse.level=0)
+cb3
+```
+
+
+### (b) rbind
+Create the following three outputs using data objects created above and a single rbind() command (for each output).
+```
+##      [,1] [,2] [,3] [,4]
+## [1,]    2   14   26    5
+## [2,]    5   17   29    8
+## [3,]    8   20   32   11
+## [4,]   11   23    2   14
+## [5,]    1   -1    1    0
+## [6,]    0    0   -1    1
+##      [,1] [,2] [,3] [,4]
+## [1,]    3    5    6   12
+## [2,]    1   -1    1    0
+## [3,]    0    0   -1    1
+##    [,1]   [,2]    [,3]   [,4]   [,5]  
+## v1 "3"    "5"     "6"    "12"   "3"   
+## v2 "TRUE" "FALSE" "TRUE" "TRUE" "TRUE"
+## v3 "A"    "B"     "C"    "D"    "E"
+```
+
+```{r, warning=FALSE}
+cat("rb1:\n")
+rb1 <- rbind(mat1[,1:4], mat2)
+rb1
+
+cat("\n\nrb2:\n")
+rb2 <- rbind(num.vec, mat2, deparse.level = 0)
+rb2
+
+cat("\n\nrb3: \n")
+rb3 <- rbind(as.character(num.vec), t(cb2))
+rb3
+
+```
+
+##Question 3
+###(a) Read in Iris data
+Read in the csv Iris data directly from the UC-Irvine Machine Learning data repository into a dataframe (see iris.data link below).
+•	Assign appropriate column names (see metadate on website).
+•	Make sure columns have the correct data type. 
+•	Use the summary() head() and/or View() functions to avoid dumping a large dataset into the console (and rmarkdown printout).
+https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data
+https://archive.ics.uci.edu/ml/machine-learning-databases/iris
+
+```{r}
+irisdf <- read.csv("https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data")
+df_names <- readLines("https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.names")
+
+```
+```{r}
+colnames(irisdf) <- c("sepal_length_cm", "sepal_width_cm", "petal_length_cm", "petal_width_cm", "class")
+irisdf$class <- as.factor(irisdf$class)
+print(str(irisdf))
+
+cat("\n Columns are now appropriate names and variable types.")
+
+cat("\n", summary(irisdf), "\n\n\n")
+
+
+```
+```{r}
+# view the dataset in another window
+View(irisdf)
+```
+
+###(b) Present summaries (use summary function) of the following subsets
+•	Iris data with class equal to Iris-versicolor.
+•	Iris data with petal width greater than 1.5 cm OR sepal width greater than 3.0 cm.
+–	Use |  compute a logical “OR” .  E.g. (x > 6  y > 2) gives all observations w/ x greater than 6 OR y greater than 2.
+
+Do you see a relationship between the width measurements and class of Iris?
+
+```{r}
+cat("Summary of iris with clas == 'Iris-versicolor'\n")
+summary(irisdf[irisdf$class == "Iris-versicolor",])
+cat("\n\n")
+cat("Summary of iris with petal_width_cm > 1.5cm OR sepal_width_cm > 3.0 cm.\n")
+summary(irisdf[c(irisdf$petal_width_cm > 1.5 | irisdf$sepal_width_cm > 3.0), ])
+cat("\n\n")
+```
+
+The classes viriginica and setosa exhibit wider petals or sepals than versicolor.
+
+##Question 4 - Cars
+###(a) Read in car data
+Read in the car data data provided in the car.csv file. These data consists entirely of categorical data, so when reading the file set the stringsAsFactors parameter appropriately.
+Use the summary() head() and/or View() functions to avoid dumping a large dataset into the console (and rmarkdown printout).
+
+```{r}
+car_df <- read.csv("week 3/car.csv", stringsAsFactors = TRUE)
+head(car_df)
+summary(car_df)
+```
+
+###(b) remove all observations (rows) with missing values
+Note that is.na() can be used to identify NA values. Show dim and summary of data with appropriate observations removed.
+
+```{r}
+
+na_detector <- function(df_vec) {
+  return(c(which(is.na(df_vec))))
+}
+
+rowNAs <- c(na_detector(car_df$price.buy),
+            na_detector(car_df$price.maint),
+            na_detector(car_df$doors),
+            na_detector(car_df$seats),
+            na_detector(car_df$trunk),
+            na_detector(car_df$safety),
+            na_detector(car_df$rating))
+
+rowNAs
+
+car_df2 <- car_df[-rowNAs,]
+
+cat("dim before NA removal: ", dim(car_df), "\n\n dim after NA removal: ",dim(car_df2))
+str(car_df2)
+
+```
+
+###(c) remove duplicate observations (rows)
+Now remove all duplicate observations from NA-free car dataset. Show your results with the dim and summary functions.
+
+```{r}
+car_df3 <- car_df2[!duplicated(car_df2), ]
+cat("dim of df with duplicates removed: ", dim(car_df3), "\n\n")
+summary(car_df3)
+```
+
+
