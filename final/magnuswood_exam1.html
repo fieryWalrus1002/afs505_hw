@@ -1641,13 +1641,12 @@ pre code {
 </div>
 
 
-<div id="what-are-the-basic-r-data-structures" class="section level2">
-<h2>1.What are the basic R data structures?</h2>
-<div id="what-are-the-differences-between-them" class="section level3">
-<h3>What are the differences between them?</h3>
-</div>
-<div id="in-what-context-would-you-use-one-versus-the-other" class="section level3">
-<h3>In what context would you use one versus the other?</h3>
+<div id="q1" class="section level2">
+<h2>Q1</h2>
+<blockquote>
+<p>What are the basic R data structures? What are the differences
+between them? In what context would you use one versus the other?</p>
+</blockquote>
 <p>The basic R data structures can be divided into two main categories,
 as seen below:</p>
 <blockquote>
@@ -1719,15 +1718,20 @@ structure in R until recently. Now that I know about them I may find a
 way to incorporate them into my work.</p>
 <hr />
 </div>
-</div>
-<div id="you-are-provided-a-folder-with-three-location-county-names-each-of-which-has-subfolders-for-one-or-two-crops-which-in-turn-has-a-data-file." class="section level2 tabset">
-<h2 class="tabset">2. You are provided a folder with three location
-(county) names, each of which has subfolders for one or two crops, which
-in turn has a data file.</h2>
-<div id="a.-iterate-through-the-folders-to-read-all-the-files-and-merge-them-into-a-single-data-frame.-you-can-use-a-loop-to-iterate-or-for-efficiency-check-out-the-list.files-function." class="section level3">
-<h3>a. Iterate through the folders to read all the files and merge them
+<div id="q2" class="section level2 tabset">
+<h2 class="tabset">Q2</h2>
+<blockquote>
+<p><em>You are provided a folder with three location (county) names,
+each of which has subfolders for one or two crops, which in turn has a
+data file.</em></p>
+</blockquote>
+<div id="a." class="section level3">
+<h3>2a.</h3>
+<blockquote>
+<p><em>Iterate through the folders to read all the files and merge them
 into a single data frame. You can use a “loop” to iterate or for
-efficiency check out the list.files() function.</h3>
+efficiency check out the list.files() function.</em></p>
+</blockquote>
 <pre class="r"><code># get all of the *.csv files in the CropModelResults dir
 data_file_list &lt;- list.files(&quot;./CropModelResults/&quot;, pattern=&quot;*.csv&quot;, recursive=TRUE, full.names = TRUE)
 
@@ -1772,17 +1776,19 @@ df &lt;- do.call(rbind, lapply(data_file_list, function(x) read.csv(x, stringsAs
 </div>
 </div>
 </div>
-<div id="b.-add-four-additional-columns-to-the-merged-dataframe-corresponding-to-the-county-name-crop-name-latitude-and-longitude-of-the-data.-you-must-get-this-information-from-the-directory-structure-you-are-looping-through-or-the-strings-returned-by-the-call-to-list.files." class="section level3">
-<h3>b. Add four additional columns to the merged dataframe corresponding
+<div id="b." class="section level3">
+<h3>2b.</h3>
+<blockquote>
+<p><em>Add four additional columns to the merged dataframe corresponding
 to the county name, crop name, latitude and longitude of the data. You
 must get this information from the directory structure you are looping
-through or the strings returned by the call to list.files().</h3>
+through or the strings returned by the call to list.files().</em></p>
+</blockquote>
 <pre class="r"><code># function to import a csv file, then include location and crop data gathered from filename string
 
 get_loc_df &lt;- function (filename){
   df &lt;- read.csv(filename, stringsAsFactors=FALSE)
   num_obs &lt;- dim(df)[1]
-  print(num_obs)
   df[&quot;county&quot;] &lt;- rep(unlist(strsplit(filename, split=&quot;/&quot;))[4], num_obs)
   df[&quot;crop&quot;] &lt;- rep(unlist(strsplit(filename, split=&quot;/&quot;))[5], num_obs)
   
@@ -1795,20 +1801,9 @@ get_loc_df &lt;- function (filename){
 }
 
 # use do.call to rbind all the data frames we get from the lapply function using our new function
-df &lt;- do.call(rbind, lapply(data_file_list, function(x) get_loc_df(x)))</code></pre>
-<pre><code>## [1] 40
-## [1] 40
-## [1] 39
-## [1] 39
-## [1] 40
-## [1] 40
-## [1] 39
-## [1] 39
-## [1] 40
-## [1] 40
-## [1] 39
-## [1] 39</code></pre>
-<pre class="r"><code>print(head(df))</code></pre>
+df &lt;- do.call(rbind, lapply(data_file_list, function(x) get_loc_df(x)))
+
+print(head(df))</code></pre>
 <pre><code>##   YYYY.MM.DD.DOY. planting_date harvest_date    yield used_biomass    irrig
 ## 1 1980-08-27(240)       1980130      1980240 15147.19            0 421.8288
 ## 2 1981-08-21(233)       1981130      1981233 15926.39            0 427.0740
@@ -1823,11 +1818,19 @@ df &lt;- do.call(rbind, lapply(data_file_list, function(x) get_loc_df(x)))</code
 ## 4 101.82500 Okanogan Corn_grain 48.15625N_119.71875W 48.15625N 119.71875W
 ## 5  90.57501 Okanogan Corn_grain 48.15625N_119.71875W 48.15625N 119.71875W
 ## 6  28.17500 Okanogan Corn_grain 48.15625N_119.71875W 48.15625N 119.71875W</code></pre>
-<p>I had a great deal of fun coming up with this solution.</p>
+<p>I had a great deal of fun coming up with this solution. I did not
+often use lapply until this class, and never do.call, which I found
+while reading about lapply. They are now the peanut butter and jelly of
+my R happiness. What an amazing and easy to use method as an alternative
+to nested for loops! It seems to work much faster as well, although I
+have not timed it.</p>
 </div>
-<div id="c.-rename-the-column-irrig-to-irrigation_demand-and-precip-to-precipitation-and-export-the-dataframe-as-a-csv-file." class="section level3">
-<h3>c. Rename the column irrig to irrigation_demand and precip to
-precipitation and export the dataframe as a csv file.</h3>
+<div id="c." class="section level3">
+<h3>2c.</h3>
+<blockquote>
+<p><em>Rename the column irrig to irrigation_demand and precip to
+precipitation and export the dataframe as a csv file.</em></p>
+</blockquote>
 <pre class="r"><code># rename colnames by index
 colnames(df)[6] &lt;- &quot;irrigation_demand&quot;
 colnames(df)[5] &lt;- &quot;precipitation&quot;
@@ -1835,10 +1838,13 @@ colnames(df)[5] &lt;- &quot;precipitation&quot;
 # write out csv, should be in final/ subdir
 write.csv(df, file= paste(getwd(), &quot;/q2df.csv&quot;, sep=&quot;&quot;))</code></pre>
 </div>
-<div id="d.-summarize-the-annual-irrigation-demand-by-crop-name-and-county-name." class="section level3">
-<h3>d. Summarize the annual irrigation demand by crop name and county
-name.</h3>
-<p><em>Annual irrigation demand by crop:</em></p>
+<div id="d." class="section level3">
+<h3>2d.</h3>
+<blockquote>
+<p><em>Summarize the annual irrigation demand by crop name and county
+name.</em></p>
+</blockquote>
+<p><strong>Annual irrigation demand by crop:</strong></p>
 <pre class="r"><code>tapply(df$irrigation_demand, df$crop, summary)</code></pre>
 <pre><code>## $Corn_grain
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
@@ -1847,7 +1853,7 @@ name.</h3>
 ## $Winter_Wheat
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##   208.0   363.9   420.1   440.3   540.0   640.0</code></pre>
-<p><em>Annual irrigation demand by county:</em></p>
+<p><strong>Annual irrigation demand by county:</strong></p>
 <pre class="r"><code>tapply(df$irrigation_demand, df$county, summary)</code></pre>
 <pre><code>## $Okanogan
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
@@ -1861,10 +1867,13 @@ name.</h3>
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##   390.0   520.0   560.0   545.9   580.0   640.0</code></pre>
 </div>
-<div id="e.-what-is-the-average-yield-of-winter-wheat-in-walla-walla-at-46.03125n118.40625w-for-the-year-ranges-1981-1990-1991-2000-and-2001-2019" class="section level3">
-<h3>e. What is the average yield of Winter Wheat in Walla Walla at
-46.03125N118.40625W for the year ranges (1981-1990), (1991-2000), and
-(2001-2019)?</h3>
+<div id="e." class="section level3">
+<h3>2e.</h3>
+<blockquote>
+<p><em>What is the average yield of Winter Wheat in Walla Walla at
+46.03125N118.40625W for the following year ranges?</em> <br>
+(1981-1990),<br> (1991-2000),<br> (2001-2019)</p>
+</blockquote>
 <pre class="r"><code>split_grab &lt;- function(input_str, sep, idx){
   # takes a string, splits it by the given separator, and return the element indicated by the given index value
   # returns as a list, so unlist it if you want the bare value. Can&#39;t seem to do it in here. 
@@ -1876,8 +1885,6 @@ name.</h3>
 year_vec &lt;- unlist(lapply(df$YYYY.MM.DD.DOY., function(x) split_grab(x, sep=&quot;-&quot;, idx=1)))
 df$year &lt;- as.numeric(year_vec)
 
-chosen_periods &lt;- c(seq(1981, 1990, 1), seq(1991, 2000, 1), seq(2001, 2019))
-
 chosen_latlong &lt;- &quot;46.03125N_118.40625W&quot;
 chosen_county &lt;- &quot;WallaWalla&quot;
 chosen_crop &lt;- &quot;Winter_Wheat&quot;
@@ -1885,37 +1892,72 @@ chosen_crop &lt;- &quot;Winter_Wheat&quot;
 wwdf &lt;- subset(df, county == chosen_county &amp; 
                  latlong==chosen_latlong &amp; 
                  crop == chosen_crop)
-# 
-# wwdf.80s &lt;- subset(wwdf, year %in% chosen_periods[1])[, &quot;yield&quot;]
-# wwdf.90s &lt;- subset(wwdf, year %in% chosen_periods[2])
-# wwdf.00s &lt;- subset(wwdf, year %in% chosen_periods[3])
-print(wwdf$year)</code></pre>
-<pre><code>##  [1] 1981 1982 1983 1984 1985 1986 1987 1988 1989 1990 1991 1992 1993 1994 1995
-## [16] 1996 1997 1998 1999 2000 2001 2002 2003 2004 2005 2006 2007 2008 2009 2010
-## [31] 2011 2012 2013 2014 2015 2016 2017 2018 2019</code></pre>
-<pre class="r"><code># subset(wwdf, year %in% chosen_periods[2])
-# subset(wwdf, year %in% chosen_periods[3])
-
-# lapply(data_file_list, function(x) get_loc_df(x))
-# 118.40625W
-# wwdf &lt;- subset(wwdf, latlong == chosen_latlong)
-# print(wwdf)</code></pre>
-<p>###f. Which location has highest yield (average) for the time period
-(2001-2019) for grain corn?</p>
+wwdf$year_range &lt;- ifelse(wwdf$year %in% seq(1981,1990,1), &quot;1980-1990&quot;, 
+                          ifelse(wwdf$year %in% seq(1991, 2000,1), &quot;1991-2000&quot;, &quot;2001-2019&quot;))</code></pre>
+<p>Average winter wheat yield for WallaWalla at 46.03125N_118.40625W,
+for the periods:</p>
+<pre class="r"><code>unlist(tapply(wwdf$yield, wwdf$year_range, mean))</code></pre>
+<pre><code>## 1980-1990 1991-2000 2001-2019 
+##  7660.895  8086.689  7720.683</code></pre>
 </div>
-<div id="g.-add-the-github-link-which-has-your-r-script-r-markdown-file-and-the-csv-file-generated-from-2-c." class="section level3">
-<h3>g. Add the Github link which has your R script/ R markdown file and
-the csv file generated from 2 (c).</h3>
+<div id="f." class="section level3">
+<h3>2f.</h3>
+<blockquote>
+<p><em>Which location has highest yield (average) for the time period
+(2001-2019) for grain corn?</em></p>
+</blockquote>
+<pre class="r"><code>corn_df &lt;- subset(df, crop == &#39;Corn_grain&#39; &amp; year %in% seq(2001, 2019, 1))
+
+highest_yield_loc &lt;- sort(tapply(corn_df$yield, corn_df$latlong, mean))[6]
+
+county &lt;- unique(df[df$latlong == &#39;46.21875N_119.34375W&#39;, ]$county)</code></pre>
+<p>Highest grain corn yield was found in Yakima county at location
+46.21875N_119.34375W with the average yield of 15263.03 mystery
+units.</p>
+<p>“Location” is unclear, given that we a county and latitude longitude
+position information. I am choosing to go with location as referring to
+the GPS coordinates, rather than just county name as it seems the more
+specific. I have also decided that yield is measured in mystery units,
+as no meta data was presented to define the units. Bushels per hectare?
+Pounds per square foot? Weight in stones per cubit?</p>
+</div>
+<div id="g." class="section level3">
+<h3>2g.</h3>
+<blockquote>
+<p><em>Add the Github link which has your R script/ R markdown file and
+the csv file generated from 2 (c).</em></p>
+</blockquote>
 <p>Please find all files related to this final exam in <a href="https://github.com/fieryWalrus1002/afs505_hw/tree/final_exam/final">my
 afs505_hw Github repo.</a></p>
 <hr />
 </div>
 </div>
-<div id="was-the-data-provided-to-you-well-described-if-not-what-information-was-missing-comment-on-what-kind-of-metadata-description-about-the-data-should-be-included-as-as-best-practice-while-sharing-datasets" class="section level2">
-<h2>3. Was the data provided to you well described ? If not, what
-information was missing? Comment on what kind of metadata (description
-about the data) should be included as as best practice while sharing
-datasets?</h2>
+<div id="section" class="section level2">
+<h2>3</h2>
+<blockquote>
+<p><em>Was the data provided to you well described?</em><br> <em>If not,
+what information was missing?</em><br> <em>Comment on what kind of
+metadata (description about the data) should be included as as best
+practice while sharing datasets?</em><br></p>
+</blockquote>
+<p>I did not feel like the data was well-described. I would never had
+intuited that irrig meant irrigation demands, or that Yakima referred to
+the county rather than the city. Some values need little information to
+ensure clarity of understanding, but many require either detailed
+metadata or a good deal of domain knowledge I do not have.</p>
+<p>There are years where there is zero precipitation recorded with lower
+values for irrigation demand than for some years and crops with high
+precipitation and even higher irrigation demand. This does not make for
+a clear understanding of what these data points can tell us. At least
+with the latitutde and longitude information and year, one can retrieve
+weather data to begin parsing what these values might mean.</p>
+<p>I believe a best practice is to include an abundance of metadata so
+that the data consumer can have enough to understand what the numbers
+represent, and to have the right terminology and context that they can
+ask the proper questions to someone with applicable domain knowledge.
+Definitions of each column, what units the values are measured in, and
+other such important information. A note as to who gathered the data and
+for what purpose would be valuable as well.</p>
 </div>
 
 
