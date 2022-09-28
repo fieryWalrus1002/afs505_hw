@@ -1,0 +1,53 @@
+---
+title: "R Notebook Markdown fun"
+subtitle: "A journey throught the remarkable world of cows"
+author: "Magnus"
+output: 
+  html_document: html_notebook
+  pdf_documnet: default
+
+---
+
+### Itemized list:
+- Top level item 1
+  - Bottom Level item 1
+- Top level item 2
+  - Bottom Level item 2
+
+### Sentence with bold and italicized?
+So how do I _write_ some *words* that are **bolded**. I guess this is how we __do that__?  
+__NOW a whole *sentence*!__
+
+### include and echo FALSE differences
+
+
+```{r echo = FALSE, cache = TRUE}
+# echo = False
+vec = c("cow", "horse", "pig")
+cat("echo = FALSE", vec)
+```
+
+```{r include = FALSE, cache = TRUE}
+# include = False
+vec = c("cow", "horse", "pig")
+cat("include = FALSE\n", vec)
+```
+
+```{r}
+# no False things here
+vec = c("cow", "horse", "pig")
+cat("nothing\n", vec)
+```
+
+include = FALSE doesn't display anything. Include is not displayed, and will not show results or the text. 
+
+echo = FALSE doesn't display anything, either. 
+
+
+### color font
+A <span style="color:red">brilliant</span> <span style="color:green">world</span> of <span style="color:blue">color</span> awaits!
+
+### Notes
+* look into cache
+* look into bookdown
+

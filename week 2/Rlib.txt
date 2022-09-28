@@ -1,0 +1,5 @@
+hey_there <- function(){
+  print("hey there, cutie patootie")
+}
+
+hey_there()

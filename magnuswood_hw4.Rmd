@@ -1,0 +1,237 @@
+---
+title: 'Homework 4'
+subtitle: "Data in R, Fall 2022"
+author: "Magnus Wood"
+output:
+  html_document:
+    df_print: paged
+---
+
+
+
+##Question 1 - functions
+###(a) create trim.CV function
+	* Q1 is the lower quartile
+	* Q3 is the upper quartile
+	* Interquartile range (IQR) = Q3- Q1.
+	* One exploratory method for identifying potential data outliers is to flag values that are very far above Q3 or very far below Q1. A common cutoff is to flag values y if:
+	
+_(y-Q3)>1.5*IQR OR (Q1-y)>1.5*IQR_
+
+Create a function trim.CV that first removes potential outliers as identified by the criteria above, then computes the coefficient of variation (sd()/mean()) for a vector of numeric data. You might find the functions IQR() and quantile() useful.
+
+```{r}
+trim.CV <- function(data.CV){
+  #1. calculate the IQR
+  iqr.CV <- IQR(data.CV)
+
+  #2. calculate quantiles
+  quan.CV <- quantile(data.CV, probs = seq(0, 1, 0.25))
+  quan1 <- quan.CV[[2]]
+  quan3 <- quan.CV[[4]]
+  
+  #3. remove outliers
+  # first make a mask
+  mask <- ifelse((data.CV - quan3 > 1.5 * iqr.CV) | (quan1 - data.CV > 1.5 * iqr.CV), FALSE, TRUE)
+  
+  # apply the mask
+  trim.data.CV <- data.CV[mask]
+  
+  # calculate cov from masked data and return the value
+  return (sd(trim.data.CV)/mean(trim.data.CV))
+  
+}
+
+```
+
+
+### (b) compute trim.CV value for sepal width
+Use the function you created above to compute the trim.CV value of sepal width in the iris data used in the previous assignment.
+```{r}
+# load datafile
+irisdf <- read.csv("https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data")
+df_names <- readLines("https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.names")
+colnames(irisdf) <- c("sepal_length_cm", "sepal_width_cm", "petal_length_cm", "petal_width_cm", "class")
+irisdf$class <- as.factor(irisdf$class)
+
+```
+
+
+```{r}
+# try our our function on the data
+sepwid.cov <- trim.CV(irisdf$sepal_width_cm)
+
+print(paste("The sepal width coefficient of variance is : ", sepwid.cov))
+
+```
+
+##Question 2
+For this question, use tapply() and aggregate() to compute group statistics.
+
+###(a) tapply
+Use tapply() to compute group standard deviations for petal width, grouping by variety. Comment briefly on results.
+
+```{r}
+# group by class, apply sd on petal_width
+std.iris <- tapply(irisdf$petal_width, irisdf$class, sd)
+print(std.iris)
+
+```
+Virginica has the highest standard deviation, versicolor sits in the middle, and setosa exhibits the smallest standard deviation. This would be an excellent feature to look at for machine learning techniques. 
+
+
+### (b) aggregate
+Use aggregate() with standard specification to compute group medians for all numerical variables in the iris dataset, grouping by variety. Comment briefly on results.
+```{r}
+# cbind the columns so we can do them all at once
+seplen.med <- aggregate(cbind(irisdf$sepal_length_cm, irisdf$sepal_width_cm, irisdf$petal_length_cm, irisdf$petal_width_cm), list(irisdf$class), median)
+colnames(seplen.med) <- c("group", "sep len med", "sep wid med", "pet len med", "pet wid med")
+print(seplen.med)
+
+```
+
+
+##Question 3
+####(a) apply
+Use the apply() function to compute column-wise sums of numerical data in the iris dataset.
+```{r}
+col.sums <- apply(irisdf[,c(1:4)], 2,sum)
+cat("column sums of all numerical data in irisdf:\n\n")
+print(col.sums)
+```
+
+###(b) ratio of length to width with for()
+Use a for loop to compute the following ratio for each observation (row) in the iris dataset:
+iris.ratio = (sepal.lenth+petal.length)/(sepal.width+petal.width)
+What fraction of observations have a ratio > 2.5 ? (Note: you can write this as a for loop without embedding in a function.)
+
+```{r}
+iris.ratio <- c()
+
+for (i in 1:length(irisdf$sepal_length_cm))
+  {
+    row.ratio <-(irisdf$sepal_length_cm[i] + irisdf$petal_length_cm[i]) /
+                (irisdf$sepal_width_cm[i] + irisdf$petal_width_cm[i])
+    
+    iris.ratio[i] <- row.ratio
+    
+  }
+
+cat("Fraction of observations > 2.5 = ", length(iris.ratio[iris.ratio > 2.5]) / length(iris.ratio))
+
+```
+
+(c) ratio of length to width with apply()
+Repeat 3b using the apply() function instead of a for() loop.
+
+```{r}
+get_ratio <- function(rowVec){
+  return()
+}
+
+iris.ratio2 <- apply(irisdf[,1:4], 1, get_ratio)
+
+cat("Fraction of observations > 2.5 = ", length(iris.ratio2[iris.ratio > 2.5]) / length(irisdf[,1]))
+
+```
+
+##Question 4 - Ecoli
+####(a) Read in ecoli data
+Read in the ecoli data at the url provided below. Convert columns into appropriate data types as necessary.
+https://archive.ics.uci.edu/ml/machine-learning-databases/ecoli/ecoli.data
+```{r importEcoli}
+
+# load datafile
+# rasslefrass, its importing awful with sep=" "...
+ecoli.raw <- read.csv("https://archive.ics.uci.edu/ml/machine-learning-databases/ecoli/ecoli.data", header=FALSE)
+ecoli.names.raw <- read.csv("https://archive.ics.uci.edu/ml/machine-learning-databases/ecoli/ecoli.names", header=FALSE)
+```
+```{r}
+# gsub('[\t]', '', ecoli.names.raw)
+for (i in ecoli.names.raw[36:49, 1]){
+  print(i)
+}
+
+
+```
+
+
+``` {r}
+
+
+import.names <- c("seq_name", "mcg", "gvh", "lip", "chg", "aac", "alm1", "alm2", "miss.att.val")
+
+
+awful.parse.func <- function(df){
+  
+  new_df <- data.frame(seq_name = NA,
+                   mcg = NA,
+                   gvh = NA,
+                   lip = NA,
+                  chg = NA,
+                  aac = NA,
+                  alm1 = NA,
+                  alm2 = NA,
+                  miss.att.val = NA)
+  
+
+  for (i in 1:length(df[,1])){
+
+    strRow <- as.character(ecoli.raw[i,])
+    strRow2 <- gsub("[,]+", ",", gsub(" ", ",",strRow))
+    strCols <- unlist(strsplit(strRow2, ","))
+    new_df[i,] <- strCols
+    
+    
+
+
+  }
+  
+  return (new_df)
+}
+
+awful.df <- awful.parse.func(ecoli.raw)
+
+
+for (i in 2:(length(awful.df[1,]) - 1))
+  {
+  if (i == 1 | i == length(awful.df[1,]))
+    {
+    awful.df[,i] <- as.factor(awful.df[,i])
+    }
+  else
+    {
+    awful.df[,i] <- as.numeric(awful.df[,i])  
+    }
+  }
+
+print(head(awful.df))
+new_df <- awful.df
+
+# that was a chore
+```
+
+
+
+###(b) lapply() sapply() - Extract data types
+Extract data types for each column in your ecoli data frame using both the lapply() and sapply() functions and the data.class() function. Discuss briefly.
+
+```{r}
+print(lapply(new_df, data.class))
+
+```
+Well, I set them myself up above. I'm guessing the dataframe was not supposed to be imported as a garbled mess? It was so hard not to load it into python or write a quick bash script. 
+I figured the two character columns should be factors. The rest I made numeric. 
+
+
+###(c) sapply() - Extract mean for numeric columns
+Compute the sum for each numeric column in your ecoli data frame using the sapply() function. What is the difference between sapply and apply for this problem? Discuss briefly.
+
+```{r}
+
+print(sapply(new_df[,2:8], sum))
+print(lapply(new_df[,2:8], sum))
+
+```
+
+sapply() provides the data in a nice named vector. Its nice. You can fit it in your pocket, carry it around until you need it! lapply is great, too. Let us not be cheap with our compliments to functions.

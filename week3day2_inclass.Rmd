@@ -1,0 +1,42 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+3, 2
+returns 3 to the power of 2
+
+```{r}
+
+apowerb <- function(a, b){
+  return(a^b)
+  }
+    
+resp = apowerb(a=5, b=2)
+
+print(resp)
+
+```
+
+```{r}
+
+# convert F to C or C to F
+convtDegrees <- function(convTo, degrees){
+  if (convTo != "F"){
+    return(((degrees - 32) * 5) / 9)  
+  }
+  else{
+    return((degrees * 9) / 5 + 32)
+  }
+}
+
+print(convtDegrees(convTo="F", degrees=0))
+
+print(convtDegrees(convTo="C", degrees=95))
+
+
+
+
+```
+
+
+)
