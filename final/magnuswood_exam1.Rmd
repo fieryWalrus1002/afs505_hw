@@ -1,0 +1,164 @@
+---
+title: "AFS505 Module 1 Final Exam"
+author: "Magnus Wood"
+date: "9/27/22"
+output:
+  html_document:
+    df_print: paged
+subtitle: Part A
+---
+```{r, echo = FALSE}
+library(knitr)
+library(rmarkdown)
+```
+
+## 1.What are the basic R data structures? 
+### What are the differences between them? 
+### In what context would you use one versus the other?
+The basic R data structures can be divided into two main categories, as seen below:
+
+> Homogeneous | Heterogeneous
+> --------------|-----------
+> matrices | data frames
+> vectors | lists
+> arrays |
+
+Homogeneous data structures require all elements of the data structure to be of the same type. The types include integers, factors, character, logical values (true or false), complex numbers, and raw. My most commonly used data structures, in order of usage, are data frames, vectors, matrices and lists. I normally employ the 'tidyverse' packages for my work, as I prefer the verb-focused method of utilizing functions and passing data through using the pipe operator. 
+
+__Data frames__ are a two-dimensional, heterogeneous data structure. Data is organized in rows and columns, with optional names for each row or column. Reading in and utilizing tabular data is a frequent use case for the data frame. There are many useful functions for filtering and summarizing the data within a data frame. I use the summary() function frequently. Data frames are great for data with one observation having many variables, but less useful for data such as image data or for computing relative distances and coordinates in a 3-dimensional space.  
+
+__Vectors__ are a data structure that consists of sequential data of a homogeneous type, such as numeric, character, or factors. When I am performing machine learning tasks, some of the packages that I use only take vectors as an input. In those cases, I am taking the columns of interest from my data frame and providing them as input to the functions. 
+
+__Matrices__ are two-dimensional data structures, and all elements of the matrix are required to be homogeneous. I most often use matrices when I am performing tasks involving image processing. Images of crop plants acquired by UAS (unmanned aerial systems) are the most frequent type of data that I most often process using a matrix. Calculation of spectral indices can be performed using the matrix functions much more efficiently than nested for-loops. 
+
+I often use __lists__ when I need a simple stand-in for a custom data structure, similar to how I would utilize a struct in C. For calculating polygon triangulation, a list of vertices could be utilized for keeping track of the convex hull, while a second list would consist of the sets of edges created from those vertices. As you can name items in a list, it allows you to easily pull the desired elements from the list with name indexing. For simpler purposes I use vectors instead.
+
+__Arrays__ can be up to three dimensional structures, similar to a stack of matrices. I've never used them in R, but I have used 3-dimensional arrays in Python applications for images with 10+ color bands. I didn't even know that arrays were an available data structure in R until recently. Now that I know about them I may find a way to incorporate them into my work. 
+
+---
+
+## 2. You are provided a folder with three location (county) names, each of which has subfolders for one or two crops, which in turn has a data file.{.tabset}
+
+### a. Iterate through the folders to read all the files and merge them into a single data frame. You can use a “loop” to iterate or for efficiency check out the list.files() function. 
+
+```{r}
+# get all of the *.csv files in the CropModelResults dir
+data_file_list <- list.files("./CropModelResults/", pattern="*.csv", recursive=TRUE, full.names = TRUE)
+
+df <- do.call(rbind, lapply(data_file_list, function(x) read.csv(x, stringsAsFactors=FALSE)))
+
+```
+
+#### summary(df):
+```{r}
+summary(df)
+```
+
+#### str(df):
+```{r}
+str(df)
+```
+
+#### head(df):
+```{r}
+head(df)
+```
+
+### b. Add four additional columns to the merged dataframe corresponding to the county name, crop name, latitude and longitude of the data. You must get this information from the directory structure you are looping through or the strings returned by the call to list.files().
+
+```{r}
+
+# function to import a csv file, then include location and crop data gathered from filename string
+
+get_loc_df <- function (filename){
+  df <- read.csv(filename, stringsAsFactors=FALSE)
+  num_obs <- dim(df)[1]
+  df["county"] <- rep(unlist(strsplit(filename, split="/"))[4], num_obs)
+  df["crop"] <- rep(unlist(strsplit(filename, split="/"))[5], num_obs)
+  
+  latlong <- gsub("N", "N_", unlist(strsplit(filename, split="/"))[6])
+  df["latlong"] <- rep(latlong, num_obs)
+  df["lat"] <- rep(unlist(strsplit(latlong, split="_"))[1], num_obs)
+  df["long"] <- rep(unlist(strsplit(latlong, split="_"))[2], num_obs)
+  
+  return (df)
+}
+
+# use do.call to rbind all the data frames we get from the lapply function using our new function
+df <- do.call(rbind, lapply(data_file_list, function(x) get_loc_df(x)))
+
+print(head(df))
+```
+I had a great deal of fun coming up with this solution. I did not often use lapply until this class, and never do.call, which I found while reading about lapply. They are now the peanut butter and jelly of my R happiness. What an amazing and easy to use method as an alternative to nested for loops! It seems to work much faster as well, although I have not timed it.
+
+### c. Rename the column irrig to irrigation_demand and precip to precipitation and export the dataframe as a csv file.
+```{r}
+# rename colnames by index
+colnames(df)[6] <- "irrigation_demand"
+colnames(df)[5] <- "precipitation"
+
+# write out csv, should be in final/ subdir
+write.csv(df, file= paste(getwd(), "/q2df.csv", sep=""))
+```
+
+### d. Summarize the annual irrigation demand by crop name and county name.
+
+**Annual irrigation demand by crop:**
+```{r}
+tapply(df$irrigation_demand, df$crop, summary)
+```
+
+**Annual irrigation demand by county:**
+```{r}
+tapply(df$irrigation_demand, df$county, summary)
+```
+
+### e. What is the average yield of Winter Wheat in Walla Walla at 46.03125N118.40625W for the year ranges (1981-1990), (1991-2000), and (2001-2019)?
+```{r}
+split_grab <- function(input_str, sep, idx){
+  # takes a string, splits it by the given separator, and return the element indicated by the given index value
+  # returns as a list, so unlist it if you want the bare value. Can't seem to do it in here. 
+  val <- unlist(strsplit(input_str, split=sep))[[1]][idx]
+  return(val[1])
+}
+
+# get the year as a separate variable
+year_vec <- unlist(lapply(df$YYYY.MM.DD.DOY., function(x) split_grab(x, sep="-", idx=1)))
+df$year <- as.numeric(year_vec)
+
+chosen_periods <- c(seq(1981, 1990, 1), seq(1991, 2000, 1), seq(2001, 2019))
+
+chosen_latlong <- "46.03125N_118.40625W"
+chosen_county <- "WallaWalla"
+chosen_crop <- "Winter_Wheat"
+
+wwdf <- subset(df, county == chosen_county & 
+                 latlong==chosen_latlong & 
+                 crop == chosen_crop)
+# 
+# wwdf.80s <- subset(wwdf, year %in% chosen_periods[1])[, "yield"]
+# wwdf.90s <- subset(wwdf, year %in% chosen_periods[2])
+# wwdf.00s <- subset(wwdf, year %in% chosen_periods[3])
+print(wwdf$year)
+# subset(wwdf, year %in% chosen_periods[2])
+# subset(wwdf, year %in% chosen_periods[3])
+
+# lapply(data_file_list, function(x) get_loc_df(x))
+# 118.40625W
+# wwdf <- subset(wwdf, latlong == chosen_latlong)
+# print(wwdf)
+
+```
+
+###f. Which location has highest yield (average) for the time period (2001-2019) for grain corn?
+```{r}
+
+```
+
+### g. Add the Github link which has your R script/ R markdown file and the csv file generated from 2 (c).
+
+Please find all files related to this final exam in [my afs505_hw Github  repo.](https://github.com/fieryWalrus1002/afs505_hw/tree/final_exam/final)
+
+---
+
+## 3. Was the data provided to you well described ? If not, what information was missing? Comment on what kind of metadata (description about the data) should be included as as best practice while sharing datasets?

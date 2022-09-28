@@ -44,10 +44,7 @@ print("world")
 ### g. Add the Github link which has your R script/ R markdown file and the csv file generated from 2 (c).
 
 
-Please find all files related to this final exam in my afs505_hw Github [" repo."](https://www.github.com/fieryWalrus1002/afs505_hw/final/)
-
-
-
+Please find all files related to this final exam in my afs505_hw Github [" repo."](https://github.com/fieryWalrus1002/afs505_hw/tree/final_exam/final)
 
 
 
